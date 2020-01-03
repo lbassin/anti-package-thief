@@ -1,0 +1,1 @@
+/home/laurent/.platformio/packages/toolchain-atmelavr/bin/avr-g++    -rdynamic CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/uno/I2Cdevlib-Core_ID11/I2Cdev.cpp.o CMakeFiles/Z_DUMMY_TARGET.dir/.pio/libdeps/uno/I2Cdevlib-MPU6050_ID107/MPU6050.cpp.o CMakeFiles/Z_DUMMY_TARGET.dir/src/main.cpp.o  -o Z_DUMMY_TARGET 

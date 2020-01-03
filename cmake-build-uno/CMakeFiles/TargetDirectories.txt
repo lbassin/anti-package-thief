@@ -1,0 +1,15 @@
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/edit_cache.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/Z_DUMMY_TARGET.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/rebuild_cache.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_REBUILD_PROJECT_INDEX.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_UPLOADFS.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_PROGRAM.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_BUILD_DEBUG.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_BUILD_VERBOSE.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_UPDATE_ALL.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_BUILD.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_MONITOR.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_UPLOAD.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_CLEAN.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_DEVICE_LIST.dir
+/home/laurent/Devs/lbassin/arduino/PackageThief/cmake-build-uno/CMakeFiles/PLATFORMIO_TEST.dir
