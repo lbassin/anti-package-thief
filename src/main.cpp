@@ -4,6 +4,10 @@
 
 #define RX_BLUETOOTH 2
 #define TX_BLUETOOTH 3
+#define STATE_BLUETOOTH 4
+
+#define ALARM_PIN 5
+#define ALARM_DURATION 5000
 
 MPU6050 mpu;
 SoftwareSerial hc05(RX_BLUETOOTH, TX_BLUETOOTH);
@@ -31,13 +35,19 @@ void initMpu() {
 void initBluetooth() {
     pinMode(RX_BLUETOOTH, INPUT);
     pinMode(TX_BLUETOOTH, OUTPUT);
+    pinMode(STATE_BLUETOOTH, INPUT);
 
     hc05.begin(9600);
+}
+
+void initAlarm() {
+    pinMode(ALARM_PIN, OUTPUT);
 }
 
 void setup() {
     initMpu();
     initBluetooth();
+    initAlarm();
 }
 
 void loop() {
@@ -45,5 +55,8 @@ void loop() {
 
     if (act.isActivity) {
         hc05.write(0x01);
+        digitalWrite(ALARM_PIN, HIGH);
+        delay(ALARM_DURATION);
+        digitalWrite(ALARM_PIN, LOW);
     }
 }
