@@ -1,16 +1,18 @@
 #include <Arduino.h>
 #include <MPU6050.h>
-#include <SoftwareSerial.h>
-
-#define RX_BLUETOOTH 2
-#define TX_BLUETOOTH 3
 
 MPU6050 mpu;
-SoftwareSerial hc05(RX_BLUETOOTH, TX_BLUETOOTH);
 
-void initMpu() {
-    while (!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_16G)) {
-        exit(1);
+void setup()
+{
+    Serial.begin(115200);
+
+    Serial.println("Initialize MPU6050");
+
+    while(!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_16G))
+    {
+        Serial.println("Could not find a valid MPU6050 sensor, check wiring!");
+        delay(500);
     }
 
     mpu.setAccelPowerOnDelay(MPU6050_DELAY_3MS);
@@ -28,22 +30,12 @@ void initMpu() {
     mpu.setZeroMotionDetectionDuration(2);
 }
 
-void initBluetooth() {
-    pinMode(RX_BLUETOOTH, INPUT);
-    pinMode(TX_BLUETOOTH, OUTPUT);
-
-    hc05.begin(9600);
-}
-
-void setup() {
-    initMpu();
-    initBluetooth();
-}
-
-void loop() {
+void loop()
+{
     Activites act = mpu.readActivites();
 
-    if (act.isActivity) {
-        hc05.write(0x01);
+    if (act.isActivity)
+    {
+        Serial.println("Moved");
     }
 }
