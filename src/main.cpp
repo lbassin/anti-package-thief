@@ -25,8 +25,8 @@ void initMpu() {
 
     mpu.setDHPFMode(MPU6050_DHPF_5HZ);
 
-    mpu.setMotionDetectionThreshold(2);
-    mpu.setMotionDetectionDuration(5);
+    mpu.setMotionDetectionThreshold(8);
+    mpu.setMotionDetectionDuration(2);
 
     mpu.setZeroMotionDetectionThreshold(4);
     mpu.setZeroMotionDetectionDuration(2);
@@ -37,7 +37,7 @@ void initBluetooth() {
     pinMode(TX_BLUETOOTH, OUTPUT);
     pinMode(STATE_BLUETOOTH, INPUT);
 
-    hc05.begin(9600);
+    hc05.begin(38400);
 }
 
 void initAlarm() {
