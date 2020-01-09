@@ -1,7 +1,7 @@
-import time
 import cv2
 import os
 import threading
+import ftplib
 
 
 def get_video_writer(video_index):
@@ -17,8 +17,13 @@ def get_video_name(video_index):
     return 'output_' + str(video_index) + '.mp4'
 
 
-def encode_video(video_name):
-    os.system("ffmpeg -y -i " + video_name + " -vcodec libx264 light_" + get_video_name(index))
+def upload_video(video_name):
+    ftp = ftplib.FTP(os.environ['FTP_IP'])
+    ftp.login(os.environ['FTP_USER'], os.environ['FTP_PSWD'])
+    with open(video_name, 'rb') as f:
+        ftp.storbinary('STOR ' + '/RaspberryPi/' + video_name, f)
+    ftp.quit()
+
     os.system("rm " + video_name)
 
 
@@ -26,13 +31,14 @@ width, height = (960, 720)
 
 index = 0
 
-webcam = cv2.VideoCapture(2)
+webcam = cv2.VideoCapture(1)
 webcam.set(cv2.CAP_PROP_FRAME_WIDTH, width)
 webcam.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
 output = get_video_writer(index)
 
-maxDurationOfRecordInSecond = webcam.get(cv2.CAP_PROP_FPS) * 60 * 10  # 60 secondes * 10 = 10 minutes
+# maxDurationOfRecordInSecond = webcam.get(cv2.CAP_PROP_FPS) * 60 * 1  # 60 secondes * 1 = 1 minutes
+maxDurationOfRecordInSecond = webcam.get(cv2.CAP_PROP_FPS) * 60 * 30
 
 frameCounter = 0
 while webcam.isOpened():
@@ -47,7 +53,7 @@ while webcam.isOpened():
         frameCounter = 0
         output.release()
 
-        threading.Thread(target=encode_video, args=(get_video_name(index),)).start()
+        threading.Thread(target=upload_video, args=(get_video_name(index),)).start()
 
         index += 1
         output = get_video_writer(index)
