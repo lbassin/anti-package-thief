@@ -12,6 +12,9 @@
 MPU6050 mpu;
 SoftwareSerial hc05(RX_BLUETOOTH, TX_BLUETOOTH);
 
+unsigned long lastAlarmTriggeredTime = 0;
+bool alarmTriggered = false;
+
 void initMpu() {
     while (!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_16G)) {
         exit(1);
@@ -38,10 +41,30 @@ void initBluetooth() {
     pinMode(STATE_BLUETOOTH, INPUT);
 
     hc05.begin(38400);
+
+    pinMode(10, OUTPUT);
+    digitalWrite(10, HIGH);
 }
 
 void initAlarm() {
     pinMode(ALARM_PIN, OUTPUT);
+}
+
+void triggerAlarm() {
+    if (alarmTriggered) {
+        return;
+    }
+
+    digitalWrite(ALARM_PIN, HIGH);
+    lastAlarmTriggeredTime = millis();
+    alarmTriggered = true;
+
+    hc05.write(0x01);
+}
+
+void turnOffAlarm() {
+    digitalWrite(ALARM_PIN, LOW);
+    alarmTriggered = false;
 }
 
 void setup() {
@@ -53,10 +76,11 @@ void setup() {
 void loop() {
     Activites act = mpu.readActivites();
 
+    if (millis() - lastAlarmTriggeredTime > ALARM_DURATION) {
+        turnOffAlarm();
+    }
+
     if (act.isActivity) {
-        hc05.write(0x01);
-        digitalWrite(ALARM_PIN, HIGH);
-        delay(ALARM_DURATION);
-        digitalWrite(ALARM_PIN, LOW);
+        triggerAlarm();
     }
 }
